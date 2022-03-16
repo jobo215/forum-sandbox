@@ -1,0 +1,45 @@
+<%- include ('includes/head.ejs') %> 
+    <link rel="stylesheet" href="/bootstrap/icons/bootstrap-icons.css">
+    <title>Login</title>
+<%- include ('includes/body.ejs') %> 
+    <%- include ('includes/nav.ejs') %> 
+    <div class="containter">
+        <div class="row">
+            <div class="col-sm-4 col-1"></div>
+            <div class="col-sm-4 col-10">
+                <div class="card vertical">
+                    <div class="card-body">
+                        <form action="/login" method="post">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" name="email" id="user" class="form-control" placeholder="Enter email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" name="password" id="pass" class="form-control" placeholder="Enter password" required>
+                            </div>
+                            <br>
+                            <button type="submit" class="btn btn-dark button-width">Log me in</button>
+                        </form>
+                    </div>
+                    <div class="card-footer footer-align">
+                        <p>If you do not have an account, you can <a href="/register">register</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 col-1"></div>
+        </div>
+        <% if(typeof(register) !== 'undefined'){ %> 
+        <br>
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <div class="alert alert-primary" role="alert">
+                    <strong>Registration success!</strong>
+                </div>
+            </div>
+        </div>
+        <% } %> 
+    </div>
+    <%- include('includes/footer.ejs') %> 
+<%- include('includes/end.ejs') %> 

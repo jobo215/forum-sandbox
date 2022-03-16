@@ -1,0 +1,61 @@
+<%- include('includes/head.ejs') %> 
+    <link rel="stylesheet" href="/bootstrap/icons/bootstrap-icons.css">
+    <title>Register</title>
+</head>
+<body>
+    <%- include('includes/nav.ejs') %> 
+    <div class="container">
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10">
+                <div class="card register-form">
+                    <div class="card-body">
+                        <form action="" method="post">
+                            <div class="form-group">
+                                <label for="name">First name</label>
+                                <input type="text" name="name" id="name" placeholder="Enter first name" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="surname">Last name</label>
+                                <input type="text" name="surname" id="surname" placeholder="Enter last name" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" name="email" id="email" placeholder="Enter email" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" name="password" id="password" placeholder="Enter password" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="re">Retype password</label>
+                                <input type="password" name="re" id="re" placeholder="Enter password again" class="form-control">
+                            </div>
+                            <br>
+                            <button type="submit" class="btn btn-dark button-width">Register</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-1"></div>
+        </div>
+        <% if(typeof(error) !== "undefined"){ %> 
+        <br>
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10">
+                <div class="alert alert-danger" role="alert">
+                    <strong>
+                        <% if(error === 1) {%>
+                            You did not enter data in all fields!
+                        <% } else if(error === 2){ %>
+                            Password not match!
+                        <% } %>   
+                    </strong>
+                </div>
+            </div>
+        </div>
+        <% } %> 
+    </div>
+    <%- include('includes/footer.ejs') %> 
+<%- include('includes/end.ejs') %>

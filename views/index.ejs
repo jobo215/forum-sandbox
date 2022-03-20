@@ -1,11 +1,73 @@
 <%- include ('includes/head.ejs') %> 
     <link rel="stylesheet" href="/bootstrap/icons/bootstrap-icons.css">
+    <script src="/js/axios/axios.js" defer></script>
+    <script src="/js/vue/vue.global.js" defer></script>
+    <script src="/main-js/index.js" defer></script>
     <title>Forum Sandbox</title>
 </head>
 <body>
     <%- include ('includes/nav.ejs') %> 
+    <div class="jumbotron jumbotron-fluid align-index">
+        <div class="container">
+          <h1 class="display-4">Forum Sandbox</h1>
+          <p class="lead">The best place where you can talk about programming!</p>
+        </div>
+      </div>
     <div class="containter">
-        
+        <div class="row">
+            <div class="col-sm-8 col-12">
+                <div id="app">
+
+                    <table class="table table-responsive-lg .table-borderless">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <button class="btn btn-dark prog-button" @click="getThreads('Javascript')">
+                                        Javascript <i class="bi bi-filetype-js"></i>
+                                    </button>
+                                </th>
+                                <th>
+                                    <button class="btn btn-dark prog-button" @click="getThreads('Java')">
+                                        Java <i class="bi bi-filetype-java"></i>
+                                    </button>
+                                </th>
+                                <th>
+                                    <button class="btn btn-dark prog-button" @click="getThreads('PHP')">
+                                        PHP <i class="bi bi-filetype-php"></i>
+                                    </button>
+                                </th>
+                                <th>
+                                    <button class="btn btn-dark prog-button" @click="getThreads('Python')">
+                                        Python <i class="bi bi-filetype-py"></i>
+                                    </button>
+                                </th>
+                            </tr>
+                        </thead>    
+                    </table>
+                    <table class="table table-responsive-lg w-100">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Title</th>
+                                <th>Language</th>
+                                <th>User</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(thread, index) in threads">
+                                <td>{{ index + 1 }}</td>
+                                <td>{{ thread.title }}</td>
+                                <td>{{ thread.language }}</td>
+                                <td>{{ thread.user }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-sm-4 col-12">
+
+            </div>
+        </div>
     </div>
     <%- include('includes/footer.ejs') %> 
 <%- include('includes/end.ejs') %> 

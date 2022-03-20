@@ -1,5 +1,8 @@
 const express = require('express');
 const app = express();
+const session = require('express-session');
+
+const mongoose = require('mongoose');
 
 // za citanje requestova
 const bodyParser = require('body-parser');
@@ -15,6 +18,8 @@ app.set('view engine', 'ejs');
 // bez ovoga nece da nadje views
 app.set('views', 'views');
 
+app.use(session({secret : 'tajna', resave : false, saveUninitialized: false}));
+
 // spajanje statickih fajlova
 // kad spojis ne moras da gadjas putanju za css
 /* nego koristis /main-css/main.css */
@@ -24,26 +29,28 @@ app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist'));
 app.use('/popper', express.static(__dirname + '/node_modules/popper.js/dist/umd'));
 app.use('/bootstrap/js', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
 app.use('/bootstrap/icons', express.static(__dirname + '/node_modules/bootstrap-icons/font'));
+app.use('/js/vue', express.static(__dirname + '/node_modules/vue/dist'));
+app.use('/js/axios', express.static(__dirname + '/node_modules/axios/dist'));
+app.use('/main-js', express.static(__dirname + '/public/js'));
 
 
 // spajanje glavne putanje sa putanjama za admina
-const admin = require('./routes/admin');
-app.use('/admin', admin);
+const adminRoutes = require('./routes/admin');
+app.use('/admin', adminRoutes);
 
-// odvajanje implementacija logike u zaseban fajl radi preglednosti
-const publicController = require('./controllers/public');
+const publicRoutes = require('./routes/public');
+app.use('/', publicRoutes);
 
-// pozivanje metoda u kojima je implementirana logika
-app.get('/', publicController.indexGet);
+const userRoutes = require('./routes/user');
+app.use('/user', userRoutes);
 
-app.get('/login', publicController.loginGet);
+const threadRest = require('./routes/thread-rest');
+app.use('/thread', threadRest);
 
-app.post('/login', publicController.loginPost);
+// const errorController = require('./controllers/error');
+// app.use(errorController.get404);
 
-app.get('/register', publicController.registerGet);
-
-app.post('/register', publicController.registerPost);
-
-
+mongoose.connect('mongodb://localhost:27017/forum').then(() => {
+    app.listen(3000);
+});
 // postavljanje porta
-app.listen(3000);

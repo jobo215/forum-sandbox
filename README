@@ -1,0 +1,9 @@
+v1.0.1
+
+<-- ADDED -->
+
+1. user register
+2. user login (not finished, only leads to post threads)
+3. posting threads for users
+4. reading latest threads (index page)
+5. sorting threads by programming language (index page)

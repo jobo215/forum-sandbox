@@ -13,23 +13,27 @@
                         <form action="" method="post">
                             <div class="form-group">
                                 <label for="name">First name</label>
-                                <input type="text" name="name" id="name" placeholder="Enter first name" class="form-control">
+                                <input type="text" name="name" id="name" placeholder="Enter first name" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label for="surname">Last name</label>
-                                <input type="text" name="surname" id="surname" placeholder="Enter last name" class="form-control">
+                                <input type="text" name="surname" id="surname" placeholder="Enter last name" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="surname">Username</label>
+                                <input type="text" name="username" id="username" placeholder="Enter username" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email" name="email" id="email" placeholder="Enter email" class="form-control">
+                                <input type="email" name="email" id="email" placeholder="Enter email" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input type="password" name="password" id="password" placeholder="Enter password" class="form-control">
+                                <input type="password" name="password" id="password" placeholder="Enter password" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label for="re">Retype password</label>
-                                <input type="password" name="re" id="re" placeholder="Enter password again" class="form-control">
+                                <input type="password" name="re" id="re" placeholder="Enter password again" class="form-control" required>
                             </div>
                             <br>
                             <button type="submit" class="btn btn-dark button-width">Register</button>
@@ -50,7 +54,9 @@
                             You did not enter data in all fields!
                         <% } else if(error === 2){ %>
                             Password not match!
-                        <% } %>   
+                        <% } else if(error === 3){ %>
+                            User with specified email already exist!
+                        <% } %>    
                     </strong>
                 </div>
             </div>
